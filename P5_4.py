@@ -1,13 +1,12 @@
-# another way to implement the step activation function using OOP
 
 import numpy as np
+import nnfs
+from nnfs.datasets import spiral_data
 
+nnfs.init()
 
-np.random.seed(0)
-
-X = [[1, 2, 3, 2.5],     # X = inputs
-    [2, 5, -1, 2],
-    [-1.5, 2.7, 3.3, -0.8]]
+# let's create the spiral data with the features and classes
+X, y = spiral_data(100, 3) # 100 feature sets of 3 classes
 
 class Layer_Dense: # this system also does not require to transpose weights dataset
     def __init__(self, n_inputs, n_neurons):
@@ -21,9 +20,11 @@ class Activation_ReLU:
         self.output = np.maximum(0, inputs)
 
 #print(np.random.randn(4, 3))
-layer1 = Layer_Dense(4,5)
-layer2 = Layer_Dense(5,2)
+layer1 = Layer_Dense(2,5) # 2 = number of inputs, 5 = number of neurons
+activation1 = Activation_ReLU()
 
 layer1.forward(X)
-layer2.forward(layer1.output)
-print(layer2.output)
+
+#print(layer1.output)
+activation1.forward(layer1.output)
+print(activation1.output)

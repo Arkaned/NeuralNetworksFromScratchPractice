@@ -25,4 +25,5 @@ for i in inputs:
     elif i <= 0:
         output.append(0)
 
-print(output)
+print(output) # this illustrates the step activation function
+
